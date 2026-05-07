@@ -94,7 +94,6 @@ document.addEventListener('DOMContentLoaded', function() {
     setupEventListeners();
     animateOnScroll();
 
-    // Vérifier si on est admin (pour garder la session)
     const adminStatus = localStorage.getItem('isAdmin');
     if (adminStatus === 'true') {
         isAdmin = true;
@@ -104,34 +103,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Configuration des écouteurs d'événements
 function setupEventListeners() {
-    // Recherche
     searchInput.addEventListener('input', function() {
         currentSearch = this.value.toLowerCase();
         filterBooks();
     });
 
-    // Filtrage par catégorie
     categoryFilter.addEventListener('change', function() {
         currentFilter = this.value;
         filterBooks();
     });
 
-    // Panier
     cartBtn.addEventListener('click', toggleCart);
     closeCart.addEventListener('click', toggleCart);
     clearCart.addEventListener('click', clearCartItems);
     checkoutBtn.addEventListener('click', handleCheckout);
 
-    // Formulaire de contact
     contactForm.addEventListener('submit', handleContactSubmit);
 
-    // Admin
     adminBtn.addEventListener('click', toggleAdmin);
     closeAdmin.addEventListener('click', toggleAdmin);
     savePurchaseLink.addEventListener('click', savePurchaseLinkHandler);
     addBookForm.addEventListener('submit', handleAddBook);
 
-    // Fermer le modal en cliquant en dehors
     cartModal.addEventListener('click', function(e) {
         if (e.target === cartModal) {
             toggleCart();
@@ -144,7 +137,6 @@ function setupEventListeners() {
         }
     });
 
-    // Double-clic sur le logo pour accéder à l'admin
     const logo = document.querySelector('.nav-logo h1');
     logo.addEventListener('dblclick', checkAdminAccess);
 }
@@ -176,7 +168,7 @@ function createBookCard(book) {
     card.className = 'book-card fade-in-up';
     card.innerHTML = `
         <div class="book-image">
-            <img src="${book.image}" alt="${book.title}" class="book-img" onerror="this.src='images/placeholder.svg'">
+            <img src="${book.image}" alt="${book.title}" class="book-img" onerror="this.src='placeholder.svg'">
             <div class="book-overlay">
                 <a href="#" class="overlay-btn" onclick="viewBookDetails(${book.id})">Voir détails</a>
             </div>
@@ -200,7 +192,6 @@ function createBookCard(book) {
 function filterBooks() {
     let filteredBooks = ebooks;
 
-    // Filtrage par recherche
     if (currentSearch) {
         filteredBooks = filteredBooks.filter(book =>
             book.title.toLowerCase().includes(currentSearch) ||
@@ -209,7 +200,6 @@ function filterBooks() {
         );
     }
 
-    // Filtrage par catégorie
     if (currentFilter !== 'all') {
         filteredBooks = filteredBooks.filter(book => book.category === currentFilter);
     }
@@ -276,7 +266,7 @@ function updateCartDisplay() {
         const cartItem = document.createElement('div');
         cartItem.className = 'cart-item';
         cartItem.innerHTML = `
-            <img src="${item.image}" alt="${item.title}" onerror="this.src='images/placeholder.svg'">
+            <img src="${item.image}" alt="${item.title}" onerror="this.src='placeholder.svg'">
             <div class="cart-item-info">
                 <h4>${item.title}</h4>
                 <p>${item.author}</p>
@@ -309,7 +299,6 @@ function handleCheckout() {
         return;
     }
 
-    // Ouvrir les liens d'achat de chaque ebook dans de nouveaux onglets
     cart.forEach(item => {
         const ebook = ebooks.find(e => e.id === item.id);
         if (ebook && ebook.purchaseLink) {
@@ -319,55 +308,19 @@ function handleCheckout() {
 
     showNotification('Redirection vers les pages d\'achat...', 'info');
 
-    // Vider le panier après la commande
     setTimeout(() => {
         clearCartItems();
         showNotification('Merci pour votre achat !', 'success');
     }, 2000);
 }
 
-// Gestion du formulaire de contact
 function handleContactSubmit(e) {
     e.preventDefault();
 
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData);
-
-    // Simulation d'envoi
     showNotification('Message envoyé avec succès !', 'success');
-
-    // Réinitialiser le formulaire
     e.target.reset();
 }
 
-// Navigation mobile
-function setupMobileNav() {
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
-
-    hamburger.addEventListener('click', function() {
-        navMenu.classList.toggle('active');
-        this.classList.toggle('active');
-    });
-}
-
-// Smooth scroll
-function setupSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-}
-
-// Animations au scroll
 function animateOnScroll() {
     const observerOptions = {
         threshold: 0.1,
@@ -387,23 +340,18 @@ function animateOnScroll() {
     });
 }
 
-// Voir les détails d'un ebook
 function viewBookDetails(bookId) {
     const book = ebooks.find(b => b.id === bookId);
     if (!book) return;
 
-    // Ici, vous pourriez ouvrir un modal avec plus de détails
     showNotification(`Détails de "${book.title}" - ${book.pages} pages, Note: ${book.rating}/5`);
 }
 
-// Notifications
 function showNotification(message, type = 'success') {
-    // Créer l'élément de notification
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.textContent = message;
 
-    // Styles de base
     Object.assign(notification.style, {
         position: 'fixed',
         top: '20px',
@@ -419,7 +367,6 @@ function showNotification(message, type = 'success') {
         transition: 'transform 0.3s ease'
     });
 
-    // Couleurs selon le type
     if (type === 'success') {
         notification.style.background = '#2ed573';
     } else if (type === 'error') {
@@ -430,12 +377,10 @@ function showNotification(message, type = 'success') {
 
     document.body.appendChild(notification);
 
-    // Animation d'entrée
     setTimeout(() => {
         notification.style.transform = 'translateX(0)';
     }, 100);
 
-    // Suppression automatique
     setTimeout(() => {
         notification.style.transform = 'translateX(100%)';
         setTimeout(() => {
@@ -444,112 +389,6 @@ function showNotification(message, type = 'success') {
     }, 3000);
 }
 
-// Fonctionnalités avancées
-function setupAdvancedFeatures() {
-    // Lazy loading des images
-    setupLazyLoading();
-
-    // Validation de formulaire en temps réel
-    setupFormValidation();
-
-    // Sauvegarde automatique du panier
-    setupAutoSave();
-}
-
-function setupLazyLoading() {
-    const images = document.querySelectorAll('img[data-src]');
-
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.classList.remove('lazy');
-                observer.unobserve(img);
-            }
-        });
-    });
-
-    images.forEach(img => imageObserver.observe(img));
-}
-
-function setupFormValidation() {
-    const inputs = document.querySelectorAll('input, textarea');
-
-    inputs.forEach(input => {
-        input.addEventListener('blur', function() {
-            validateField(this);
-        });
-    });
-}
-
-function validateField(field) {
-    const value = field.value.trim();
-    let isValid = true;
-    let message = '';
-
-    switch(field.name) {
-        case 'name':
-            if (value.length < 2) {
-                isValid = false;
-                message = 'Le nom doit contenir au moins 2 caractères';
-            }
-            break;
-        case 'email':
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(value)) {
-                isValid = false;
-                message = 'Veuillez entrer un email valide';
-            }
-            break;
-        case 'subject':
-            if (value.length < 5) {
-                isValid = false;
-                message = 'Le sujet doit contenir au moins 5 caractères';
-            }
-            break;
-        case 'message':
-            if (value.length < 10) {
-                isValid = false;
-                message = 'Le message doit contenir au moins 10 caractères';
-            }
-            break;
-    }
-
-    field.style.borderColor = isValid ? '#667eea' : '#ff4757';
-
-    // Afficher/masquer le message d'erreur
-    let errorElement = field.parentElement.querySelector('.error-message');
-    if (!isValid) {
-        if (!errorElement) {
-            errorElement = document.createElement('div');
-            errorElement.className = 'error-message';
-            errorElement.style.color = '#ff4757';
-            errorElement.style.fontSize = '12px';
-            errorElement.style.marginTop = '5px';
-            field.parentElement.appendChild(errorElement);
-        }
-        errorElement.textContent = message;
-    } else if (errorElement) {
-        errorElement.remove();
-    }
-
-    return isValid;
-}
-
-function setupAutoSave() {
-    // Sauvegarde automatique du panier toutes les 30 secondes
-    setInterval(() => {
-        if (cart.length > 0) {
-            saveCart();
-        }
-    }, 30000);
-}
-
-// Initialisation des fonctionnalités avancées
-setupAdvancedFeatures();
-
-// Fonctions Admin
 function checkAdminAccess() {
     const password = prompt("Mot de passe administrateur:");
     if (password === ADMIN_PASSWORD) {
@@ -578,10 +417,7 @@ function toggleAdmin() {
 }
 
 function loadAdminData() {
-    // Charger le lien de paiement
     purchaseLinkInput.value = purchaseLink;
-
-    // Charger la liste des ebooks
     displayAdminBooks();
 }
 
@@ -600,13 +436,13 @@ function handleAddBook(e) {
     e.preventDefault();
 
     const newBook = {
-        id: Date.now(), // ID unique basé sur timestamp
+        id: Date.now(),
         title: document.getElementById('bookTitle').value,
         author: document.getElementById('bookAuthor').value,
         price: parseFloat(document.getElementById('bookPrice').value),
         category: document.getElementById('bookCategory').value,
         description: document.getElementById('bookDescription').value,
-        image: document.getElementById('bookImage').value || 'images/placeholder.svg',
+        image: document.getElementById('bookImage').value || 'placeholder.svg',
         rating: parseFloat(document.getElementById('bookRating').value) || 0,
         pages: parseInt(document.getElementById('bookPages').value) || 0,
         purchaseLink: document.getElementById('bookPurchaseLink').value || ''
@@ -617,7 +453,6 @@ function handleAddBook(e) {
     displayBooks();
     displayAdminBooks();
 
-    // Réinitialiser le formulaire
     addBookForm.reset();
     showNotification('Ebook ajouté avec succès', 'success');
 }
@@ -651,7 +486,6 @@ function editBook(bookId) {
     const book = ebooks.find(b => b.id === bookId);
     if (!book) return;
 
-    // Remplir le formulaire avec les données existantes
     document.getElementById('bookTitle').value = book.title;
     document.getElementById('bookAuthor').value = book.author;
     document.getElementById('bookPrice').value = book.price;
@@ -662,10 +496,8 @@ function editBook(bookId) {
     document.getElementById('bookPages').value = book.pages;
     document.getElementById('bookPurchaseLink').value = book.purchaseLink || '';
 
-    // Supprimer l'ancien livre
     deleteBook(bookId);
 
-    // Faire défiler vers le formulaire
     document.querySelector('.admin-section h4').scrollIntoView({ behavior: 'smooth' });
 }
 
@@ -700,20 +532,3 @@ function loadPurchaseLink() {
         purchaseLink = saved;
     }
 }
-
-// Initialisation
-document.addEventListener('DOMContentLoaded', function() {
-    loadEbooks();
-    loadPurchaseLink();
-    displayBooks();
-    updateCartCount();
-    setupEventListeners();
-    animateOnScroll();
-
-    // Vérifier si on est admin (pour garder la session)
-    const adminStatus = localStorage.getItem('isAdmin');
-    if (adminStatus === 'true') {
-        isAdmin = true;
-        adminBtn.style.display = 'inline-block';
-    }
-});
