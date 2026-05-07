@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ebook Store - Découvrez mes ouvrages</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <h1><i class="fas fa-book-open"></i> Ebook Store</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link active">Accueil</a></li>
+                    <li><a href="#catalogue" class="nav-link">Catalogue</a></li>
+                    <li><a href="#about" class="nav-link">À propos</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="nav-cart">
+                    <button class="admin-btn" id="adminBtn" style="display: none;">
+                        <i class="fas fa-cog"></i> Admin
+                    </button>
+                    <button class="cart-btn" id="cartBtn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                </div>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">Découvrez mes ebooks exclusifs</h1>
+                <p class="hero-subtitle">Des ouvrages de qualité pour enrichir votre esprit et développer vos compétences</p>
+                <div class="hero-buttons">
+                    <a href="#catalogue" class="btn btn-primary">Explorer le catalogue</a>
+                    <a href="#about" class="btn btn-secondary">En savoir plus</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="images/hero-book.png" alt="Pile de livres" class="hero-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalogue Section -->
+    <section class="catalogue" id="catalogue">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Notre Catalogue</h2>
+                <p class="section-subtitle">Choisissez parmi nos ebooks les plus populaires</p>
+            </div>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Rechercher un ebook..." class="search-input">
+                <select id="categoryFilter" class="filter-select">
+                    <option value="all">Toutes les catégories</option>
+                    <option value="développement">Développement personnel</option>
+                    <option value="business">Business</option>
+                    <option value="technologie">Technologie</option>
+                    <option value="santé">Santé & Bien-être</option>
+                </select>
+            </div>
+            <div class="books-grid" id="booksGrid">
+                <!-- Les ebooks seront chargés dynamiquement par JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-container">
+                <div class="about-image">
+                    <img src="Design sans titre.png" alt="Auteur" class="about-img">
+                </div>
+                <div class="about-content">
+                    <h2 class="section-title">À propos de l'auteur</h2>
+                    <p class="about-text">
+                        Passionné par l'écriture et le partage de connaissances, je suis l'auteur de ces ebooks qui visent à aider les lecteurs à atteindre leurs objectifs personnels et professionnels.
+                    </p>
+                    <p class="about-text">
+                        Notre ancienne boutique en ligne a été victime d'un piratage. Nous avons donc ouvert ce nouveau site sécurisé pour continuer à proposer nos ebooks sans interruption.
+                    </p>
+                    <p class="about-text">
+                        Avec plus de 10 ans d'expérience dans divers domaines, j'ai créé ces ouvrages pour transmettre mon savoir et mes expériences de manière accessible et pratique.
+                    </p>
+                    <div class="stats">
+                        <div class="stat">
+                            <h3>50+</h3>
+                            <p>Ebooks publiés</p>
+                        </div>
+                        <div class="stat">
+                            <h3>10000+</h3>
+                            <p>Lecteurs satisfaits</p>
+                        </div>
+                        <div class="stat">
+                            <h3>4.8/5</h3>
+                            <p>Note moyenne</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Témoignages</h2>
+                <p class="section-subtitle">Ce que disent nos lecteurs</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Ces ebooks m'ont vraiment aidé à développer mes compétences. Le contenu est de qualité et très pratique."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" alt="Marie D." class="author-img">
+                        <div class="author-info">
+                            <h4>Marie D.</h4>
+                            <span>Entrepreneure</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Excellent travail ! Les conseils donnés sont applicables au quotidien et donnent de vrais résultats."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" alt="Jean P." class="author-img">
+                        <div class="author-info">
+                            <h4>Jean P.</h4>
+                            <span>Développeur</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Je recommande vivement ces ouvrages. Ils sont bien structurés et faciles à comprendre."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face" alt="Sophie L." class="author-img">
+                        <div class="author-info">
+                            <h4>Sophie L.</h4>
+                            <span>Coach</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"En tant qu'influenceur reconnu, je recommande cette boutique pour son contenu digital de qualité et son nouveau départ sécuritaire."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&h=150&fit=crop&crop=face" alt="Alexandre M." class="author-img">
+                        <div class="author-info">
+                            <h4>Alexandre M.</h4>
+                            <span>Influenceur reconnu</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Ce nouveau site est exactement ce que je cherchais. Contenu inspirant et service professionnel pour les créateurs de contenu."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=150&h=150&fit=crop&crop=face" alt="Laura T." class="author-img">
+                        <div class="author-info">
+                            <h4>Laura T.</h4>
+                            <span>Entrepreneure digitale</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contactez-nous</h2>
+                <p class="section-subtitle">Une question ? N'hésitez pas à nous contacter</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>digitlshidems@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Téléphone</h4>
+                            <p>0975941293</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Adresse</h4>
+                            <p>kinshasa, RDC</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" id="name" name="name" placeholder="Votre nom" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" placeholder="Votre email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="subject" name="subject" placeholder="Sujet" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" name="message" placeholder="Votre message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-modal-content">
+            <div class="cart-modal-header">
+                <h3>Votre panier</h3>
+                <span class="close-cart" id="closeCart">&times;</span>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <!-- Les articles du panier seront affichés ici -->
+            </div>
+            <div class="cart-total">
+                <h4>Total: <span id="cartTotal">0.00€</span></h4>
+            </div>
+            <div class="cart-actions">
+                <button class="btn btn-secondary" id="clearCart">Vider le panier</button>
+                <button class="btn btn-primary" id="checkoutBtn">Commander</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Modal -->
+    <div class="admin-modal" id="adminModal">
+        <div class="admin-modal-content">
+            <div class="admin-modal-header">
+                <h3>Panneau d'Administration</h3>
+                <span class="close-admin" id="closeAdmin">&times;</span>
+            </div>
+            <div class="admin-content">
+                <div class="admin-section">
+                    <h4>Configuration du Lien d'Achat</h4>
+                    <div class="form-group">
+                        <label for="purchaseLink">Lien de paiement :</label>
+                        <input type="url" id="purchaseLink" placeholder="https://paypal.me/votrecompte" value="">
+                        <button class="btn btn-primary" id="savePurchaseLink">Sauvegarder</button>
+                    </div>
+                </div>
+                <div class="admin-section">
+                    <h4>Ajouter un Nouveau Ebook</h4>
+                    <form id="addBookForm">
+                        <div class="form-group">
+                            <input type="text" id="bookTitle" placeholder="Titre du livre" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="bookAuthor" placeholder="Auteur" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" id="bookPrice" placeholder="Prix (€)" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <select id="bookCategory" required>
+                                <option value="">Choisir une catégorie</option>
+                                <option value="développement">Développement personnel</option>
+                                <option value="business">Business</option>
+                                <option value="technologie">Technologie</option>
+                                <option value="santé">Santé & Bien-être</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="bookDescription" placeholder="Description" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="url" id="bookImage" placeholder="URL de l'image">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" id="bookRating" placeholder="Note (1-5)" min="1" max="5" step="0.1">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" id="bookPages" placeholder="Nombre de pages">
+                        </div>
+                        <div class="form-group">
+                            <input type="url" id="bookPurchaseLink" placeholder="Lien d'achat (optionnel)">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Ajouter l'Ebook</button>
+                    </form>
+                </div>
+                <div class="admin-section">
+                    <h4>Ebooks Existants</h4>
+                    <div id="adminBooksList">
+                        <!-- Liste des ebooks pour modification/suppression -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Ebook Store</h3>
+                    <p>Des ebooks de qualité pour votre développement personnel et professionnel.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens rapides</h3>
+                    <ul>
+                        <li><a href="#home">Accueil</a></li>
+                        <li><a href="#catalogue">Catalogue</a></li>
+                        <li><a href="#about">À propos</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Suivez-nous</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Ebook Store. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

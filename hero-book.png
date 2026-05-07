@@ -1,0 +1,26 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="heroGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#764ba2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f093fb;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#heroGradient)"/>
+
+  <!-- Books stack -->
+  <rect x="50" y="100" width="80" height="120" rx="5" ry="5" fill="#fff" stroke="#333" stroke-width="1"/>
+  <rect x="60" y="110" width="80" height="120" rx="5" ry="5" fill="#fff" stroke="#333" stroke-width="1"/>
+  <rect x="70" y="120" width="80" height="120" rx="5" ry="5" fill="#fff" stroke="#333" stroke-width="1"/>
+
+  <!-- Book spines -->
+  <rect x="45" y="105" width="90" height="115" rx="3" ry="3" fill="none" stroke="#666" stroke-width="1"/>
+  <rect x="55" y="115" width="90" height="115" rx="3" ry="3" fill="none" stroke="#666" stroke-width="1"/>
+  <rect x="65" y="125" width="90" height="115" rx="3" ry="3" fill="none" stroke="#666" stroke-width="1"/>
+
+  <!-- Book titles -->
+  <text x="90" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#333">EBOOK</text>
+  <text x="100" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#333">STORE</text>
+</svg>
